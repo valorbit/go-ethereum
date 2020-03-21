@@ -90,3 +90,8 @@ func KnownDNSNetwork(genesis common.Hash, protocol string) string {
 	}
 	return dnsPrefix + protocol + "." + net + ".ethdisco.net"
 }
+
+var ValorbitBootnodes = []string{
+	// Valorbit Go Bootnodes
+	"enode://7ebc53b06bb2b721e0f3ab62f229ffee75770fd68a76d47a834a61638857aeb44f432b5f39d273b2238ba67072d729c2748e93f384f3ffcc1700834bfe9a8062@35.235.80.133:30322",
+}
