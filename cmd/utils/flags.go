@@ -754,6 +754,8 @@ func MakeDataDir(ctx *cli.Context) string {
 		}
 		if ctx.GlobalBool(YoloV1Flag.Name) {
 			return filepath.Join(path, "yolo-v1")
+		if ctx.GlobalBool(ValorbitFlag.Name) {
+			return filepath.Join(path, "valorbit")
 		}
 		return path
 	}
@@ -813,6 +815,8 @@ func setBootstrapNodes(ctx *cli.Context, cfg *p2p.Config) {
 		urls = params.GoerliBootnodes
 	case ctx.GlobalBool(YoloV1Flag.Name):
 		urls = params.YoloV1Bootnodes
+	case ctx.GlobalBool(ValorbitFlag.Name):
+		urls = params.ValorbitBootnodes
 	case cfg.BootstrapNodes != nil:
 		return // already set, don't apply defaults.
 	}
@@ -849,6 +853,8 @@ func setBootstrapNodesV5(ctx *cli.Context, cfg *p2p.Config) {
 		urls = params.GoerliBootnodes
 	case ctx.GlobalBool(YoloV1Flag.Name):
 		urls = params.YoloV1Bootnodes
+	case ctx.GlobalBool(ValorbitFlag.Name):
+		urls = params.ValorbitBootnodes
 	case cfg.BootstrapNodesV5 != nil:
 		return // already set, don't apply defaults.
 	}
@@ -1281,6 +1287,8 @@ func setDataDir(ctx *cli.Context, cfg *node.Config) {
 		cfg.DataDir = filepath.Join(node.DefaultDataDir(), "goerli")
 	case ctx.GlobalBool(YoloV1Flag.Name) && cfg.DataDir == node.DefaultDataDir():
 		cfg.DataDir = filepath.Join(node.DefaultDataDir(), "yolo-v1")
+	case ctx.GlobalBool(ValorbitFlag.Name) && cfg.DataDir == node.DefaultDataDir():
+		cfg.DataDir = filepath.Join(node.DefaultDataDir(), "valorbit")
 	}
 }
 
@@ -1598,6 +1606,13 @@ func SetEthConfig(ctx *cli.Context, stack *node.Node, cfg *eth.Config) {
 			cfg.NetworkId = 133519467574833 // "yolov1"
 		}
 		cfg.Genesis = core.DefaultYoloV1GenesisBlock()
+		setDNSDiscoveryDefaults(cfg, params.KnownDNSNetworks[params.GoerliGenesisHash])
+	case ctx.GlobalBool(ValorbitFlag.Name):
+		if !ctx.GlobalIsSet(NetworkIdFlag.Name) {
+			cfg.NetworkId = 22
+		}
+		cfg.Genesis = core.DefaultValorbitGenesisBlock()
+		setDNSDiscoveryDefaults(cfg, params.KnownDNSNetworks[params.ValorbitGenesisHash])
 	case ctx.GlobalBool(DeveloperFlag.Name):
 		if !ctx.GlobalIsSet(NetworkIdFlag.Name) {
 			cfg.NetworkId = 1337
