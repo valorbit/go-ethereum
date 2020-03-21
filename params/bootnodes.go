@@ -76,6 +76,7 @@ const dnsPrefix = "enrtree://AKA3AM6LPBYEUDMVNU3BSVQJ5AD45Y7YPOHJLEF6W26QOE4VTUD
 // information.
 func KnownDNSNetwork(genesis common.Hash, protocol string) string {
 	var net string
+	var domain string = ".ethdisco.net"
 	switch genesis {
 	case MainnetGenesisHash:
 		net = "mainnet"
@@ -85,10 +86,15 @@ func KnownDNSNetwork(genesis common.Hash, protocol string) string {
 		net = "rinkeby"
 	case GoerliGenesisHash:
 		net = "goerli"
+	case ValorbitGenesisHash:
+		net = "mainnet"
+		domain = ".valorbit.com"
 	default:
 		return ""
 	}
-	return dnsPrefix + protocol + "." + net + ".ethdisco.net"
+	return dnsPrefix + protocol + "." + net + domain
+	// These DNS names provide bootstrap connectivity for public testnets and the mainnet.
+	// See https://github.com/ethereum/discv4-dns-lists for more information.
 }
 
 var ValorbitBootnodes = []string{
