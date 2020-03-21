@@ -70,6 +70,7 @@ var YoloV1Bootnodes = []string{
 }
 
 const dnsPrefix = "enrtree://AKA3AM6LPBYEUDMVNU3BSVQJ5AD45Y7YPOHJLEF6W26QOE4VTUDPE@"
+const dnsPrefixVal = "enrtree://AIC2FYLEXH3QNI6735AHMYEFSREA3IVUJPZHVLTXJP5ZOC7BCN7NG@"
 
 // KnownDNSNetwork returns the address of a public DNS-based node list for the given
 // genesis hash and protocol. See https://github.com/ethereum/discv4-dns-lists for more
@@ -101,11 +102,16 @@ func KnownDNSNetwork(genesis common.Hash, protocol string) string {
 }
 
 var ValorbitBootnodes = []string{
-	// Valorbit Go Bootnodes
-	"enode://7ebc53b06bb2b721e0f3ab62f229ffee75770fd68a76d47a834a61638857aeb44f432b5f39d273b2238ba67072d729c2748e93f384f3ffcc1700834bfe9a8062@35.235.80.133:30322",
+	// Valorbit network Go Bootnodes
+	"enode://491bc83e4c152ffad651b85afae0ab2cbcbf25ad35d8a7c96ca030f3677ec0462e36623045403b864c936f32fd461df4149e009a3bcd63bac15890cdc3784ce7@35.236.111.241:30303", // us-west
+	"enode://7b18696a27cbae211c08f511a75815e4deefb31d39b09f65bbcec2f7777f7db62d792bc086fb3d425c83372a7df64b8f218c1e15a3cbe26e431b330df1b2bdb1@51.195.128.162:30303", // europe
+	"enode://681b4529c391969c446c4e4705ec805a1d27a64512dfcb23c96fed3fe6fb0c3478aecf21388fac8145c1633f5661a9a875f75728162c6d56414d1f7245d85cf4@157.230.77.120:30303", // europe-do-fr
+	"enode://2559a2f105ac167c407c41551eb2a86c27ab4c0dd8497450de46dee4456af6f8c4a5540b59822f9f248faa09c0e69f86ec495f60b100e21e9e4b05a7151ad8fe@51.79.146.238:30303", // asia-sgp
 }
 
 var GranvilleBootnodes = []string{
 	// Valorbit testnet Go Bootnodes
-	"enode://7ebc53b06bb2b721e0f3ab62f229ffee75770fd68a76d47a834a61638857aeb44f432b5f39d273b2238ba67072d729c2748e93f384f3ffcc1700834bfe9a8062@35.235.80.133:30322",
+	"enode://87b49ce1f8af4baaffe2c0c72cf966af1355b4cdcd38b0dcc5622f70e31f8a0922fa38f60f6b676ad7ead0ff02b0d9ed8937253a7a6122b9ae6173e6cea9150e@35.236.111.241:30304",
+	"enode://d64be0dba1a2ba3bf5aa1b2ab563410e7e1e3b9b725a1ff352e3a79a83e331aae00b132475d99c5e4b457b346ea867df196c819f404eb6764af629312563f179@51.195.128.162:30304",
+	"enode://249ab9ef4098f4fd8aa32fb89a1fdc7b1b1342e08ac28b39e57b23ca354b42ff692e6ca78bd4654a1642f52ef83efd1b3563e1465ff330dea50519e3155e6e52@157.230.77.120:30304", // europe-do-fr
 }
