@@ -77,10 +77,11 @@ const dnsPrefix = "enrtree://AKA3AM6LPBYEUDMVNU3BSVQJ5AD45Y7YPOHJLEF6W26QOE4VTUD
 // These DNS names provide bootstrap connectivity for public testnets and the mainnet.
 // See https://github.com/ethereum/discv4-dns-lists for more information.
 var KnownDNSNetworks = map[common.Hash]string{
-	MainnetGenesisHash: dnsPrefix + "all.mainnet.ethdisco.net",
-	TestnetGenesisHash: dnsPrefix + "all.ropsten.ethdisco.net",
-	RinkebyGenesisHash: dnsPrefix + "all.rinkeby.ethdisco.net",
-	GoerliGenesisHash:  dnsPrefix + "all.goerli.ethdisco.net",
+	MainnetGenesisHash:    dnsPrefix + "all.mainnet.ethdisco.net",
+	ValorbitGenesisHash: dnsPrefix + "all.mainnet.valorbit.com",
+	TestnetGenesisHash:    dnsPrefix + "all.ropsten.ethdisco.net",
+	RinkebyGenesisHash:    dnsPrefix + "all.rinkeby.ethdisco.net",
+	GoerliGenesisHash:     dnsPrefix + "all.goerli.ethdisco.net",
 }
 
 var ValorbitBootnodes = []string{
