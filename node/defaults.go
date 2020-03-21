@@ -21,6 +21,7 @@ import (
 	"os/user"
 	"path/filepath"
 	"runtime"
+	"strings"
 
 	"github.com/ethereum/go-ethereum/p2p"
 	"github.com/ethereum/go-ethereum/p2p/nat"
@@ -58,23 +59,24 @@ var DefaultConfig = Config{
 // persistence requirements.
 func DefaultDataDir() string {
 	// Try to place the data folder in the user's home dir
+	defaultSubDir := "Valorbit"
 	home := homeDir()
 	if home != "" {
 		switch runtime.GOOS {
 		case "darwin":
-			return filepath.Join(home, "Library", "Ethereum")
+			return filepath.Join(home, "Library", defaultSubDir)
 		case "windows":
 			// We used to put everything in %HOME%\AppData\Roaming, but this caused
 			// problems with non-typical setups. If this fallback location exists and
 			// is non-empty, use it, otherwise DTRT and check %LOCALAPPDATA%.
-			fallback := filepath.Join(home, "AppData", "Roaming", "Ethereum")
+			fallback := filepath.Join(home, "AppData", "Roaming", defaultSubDir)
 			appdata := windowsAppData()
 			if appdata == "" || isNonEmptyDir(fallback) {
 				return fallback
 			}
-			return filepath.Join(appdata, "Ethereum")
+			return filepath.Join(appdata, defaultSubDir)
 		default:
-			return filepath.Join(home, ".ethereum")
+			return filepath.Join(home, "."+strings.ToLower(defaultSubDir))
 		}
 	}
 	// As we cannot guess a stable location, return empty and handle later
