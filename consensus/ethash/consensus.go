@@ -41,8 +41,8 @@ var (
 	FrontierBlockReward       = big.NewInt(5e+18) // Block reward in wei for successfully mining a block
 	ByzantiumBlockReward      = big.NewInt(3e+18) // Block reward in wei for successfully mining a block upward from Byzantium
 	ConstantinopleBlockReward = big.NewInt(2e+18) // Block reward in wei for successfully mining a block upward from Constantinople
-	// Block reward in wei for successfully mining a block for Valorether chain
-	ValoretherBlockReward, _ = new(big.Int).SetString("5000000000000000000000", 10)
+	// Block reward in wei for successfully mining a block for Valorbit chain
+	ValorbitBlockReward, _ = new(big.Int).SetString("5000000000000000000000", 10)
 
 	maxUncles                = 2                // Maximum number of uncles allowed in a single block
 	allowedFutureBlockTime   = 15 * time.Second // Max time from current time allowed for blocks, before they're considered future blocks
@@ -566,7 +566,7 @@ func (ethash *Ethash) verifySeal(chain consensus.ChainReader, header *types.Head
 
 // TODO : use ethereum rewards by default
 // default accumulateRewards()
-var accumulateRewards func(config *params.ChainConfig, state *state.StateDB, header *types.Header, uncles []*types.Header) = accumulateValoretherRewards
+var accumulateRewards func(config *params.ChainConfig, state *state.StateDB, header *types.Header, uncles []*types.Header) = accumulateValorbitRewards
 
 // Prepare implements consensus.Engine, initializing the difficulty field of a
 // header to conform to the ethash protocol. The changes are done inline.
@@ -575,8 +575,8 @@ func (ethash *Ethash) Prepare(chain consensus.ChainReader, header *types.Header)
 	// setup accumulateRewards
 	rootHash := chain.GetHeaderByNumber(0).Hash()
 
-	if rootHash == params.ValoretherGenesisHash || rootHash == params.GranvilleGenesisHash {
-		accumulateRewards = accumulateValoretherRewards
+	if rootHash == params.ValorbitGenesisHash || rootHash == params.GranvilleGenesisHash {
+		accumulateRewards = accumulateValorbitRewards
 	}
 
 	parent := chain.GetHeader(header.ParentHash, header.Number.Uint64()-1)
@@ -666,9 +666,9 @@ func accumulateEthereumRewards(config *params.ChainConfig, state *state.StateDB,
 // AccumulateRewards credits the coinbase of the given block with the mining
 // reward. The total reward consists of the static block reward and rewards for
 // included uncles. The coinbase of each uncle block is also rewarded.
-func accumulateValoretherRewards(config *params.ChainConfig, state *state.StateDB, header *types.Header, uncles []*types.Header) {
+func accumulateValorbitRewards(config *params.ChainConfig, state *state.StateDB, header *types.Header, uncles []*types.Header) {
 
-	blockReward := ValoretherBlockReward
+	blockReward := ValorbitBlockReward
 
 	if config.HasECIP1017() {
 		// Ensure value 'era' is configured.
