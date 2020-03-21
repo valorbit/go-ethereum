@@ -33,12 +33,27 @@ import (
 func TestDefaultGenesisBlock(t *testing.T) {
 	block := DefaultGenesisBlock().ToBlock(nil)
 	if block.Hash() != params.ValorbitGenesisHash {
-		t.Errorf("wrong valorbit genesis hash, got %v, want %v", block.Hash(), params.MainnetGenesisHash)
+		t.Errorf("wrong valorbit genesis hash, got %v, want %v", block.Hash(), params.ValorbitGenesisHash)
 	}
+
 	block = DefaultRopstenGenesisBlock().ToBlock(nil)
 	if block.Hash() != params.RopstenGenesisHash {
 		t.Errorf("wrong ropsten genesis hash, got %v, want %v", block.Hash(), params.RopstenGenesisHash)
 	}
+
+	block = DefaultGranvilleGenesisBlock().ToBlock(nil)
+	if block.Hash() != params.GranvilleGenesisHash {
+		t.Errorf("wrong testnet genesis hash, got %v, want %v", block.Hash(), params.GranvilleGenesisHash)
+	}
+
+	/*
+		block := DefaultGenesisBlock().ToBlock(nil)
+		if block.Hash() != params.MainnetGenesisHash {
+			t.Errorf("wrong valorbit genesis hash, got %v, want %v", block.Hash(), params.MainnetGenesisHash)
+		}
+
+	*/
+
 }
 
 func TestSetupGenesis(t *testing.T) {
@@ -104,6 +119,17 @@ func TestSetupGenesis(t *testing.T) {
 			wantHash:   params.RopstenGenesisHash,
 			wantConfig: params.RopstenChainConfig,
 		},
+		{
+			name: "custom block in DB, genesis == granville",
+			fn: func(db ethdb.Database) (*params.ChainConfig, common.Hash, error) {
+				customg.MustCommit(db)
+				return SetupGenesisBlock(db, DefaultGranvilleGenesisBlock())
+			},
+			wantErr:    &GenesisMismatchError{Stored: customghash, New: params.GranvilleGenesisHash},
+			wantHash:   params.GranvilleGenesisHash,
+			wantConfig: params.GranvilleChainConfig,
+		},
+
 		{
 			name: "compatible config in DB",
 			fn: func(db ethdb.Database) (*params.ChainConfig, common.Hash, error) {
