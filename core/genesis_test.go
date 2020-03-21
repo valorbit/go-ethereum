@@ -32,8 +32,8 @@ import (
 
 func TestDefaultGenesisBlock(t *testing.T) {
 	block := DefaultGenesisBlock().ToBlock(nil)
-	if block.Hash() != params.MainnetGenesisHash {
-		t.Errorf("wrong mainnet genesis hash, got %v, want %v", block.Hash(), params.MainnetGenesisHash)
+	if block.Hash() != params.ValorbitGenesisHash {
+		t.Errorf("wrong valorbit genesis hash, got %v, want %v", block.Hash(), params.MainnetGenesisHash)
 	}
 	block = DefaultRopstenGenesisBlock().ToBlock(nil)
 	if block.Hash() != params.RopstenGenesisHash {
