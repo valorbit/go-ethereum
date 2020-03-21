@@ -25,20 +25,24 @@ import (
 	"strings"
 )
 
+// This blockchain's SLIP-0044 coin type . TODO : Register it
+var DefaultCoinType uint32 = 0x80000000 + 538
+
 // DefaultRootDerivationPath is the root path to which custom derivation endpoints
 // are appended. As such, the first account will be at m/44'/60'/0'/0, the second
 // at m/44'/60'/0'/1, etc.
-var DefaultRootDerivationPath = DerivationPath{0x80000000 + 44, 0x80000000 + 60, 0x80000000 + 0, 0}
+var DefaultRootDerivationPath = DerivationPath{0x80000000 + 44, DefaultCoinType, 0x80000000 + 0, 0}
 
 // DefaultBaseDerivationPath is the base path from which custom derivation endpoints
 // are incremented. As such, the first account will be at m/44'/60'/0'/0/0, the second
 // at m/44'/60'/0'/0/1, etc.
-var DefaultBaseDerivationPath = DerivationPath{0x80000000 + 44, 0x80000000 + 60, 0x80000000 + 0, 0, 0}
+var DefaultBaseDerivationPath = DerivationPath{0x80000000 + 44, DefaultCoinType, 0x80000000 + 0, 0, 0}
 
 // LegacyLedgerBaseDerivationPath is the legacy base path from which custom derivation
 // endpoints are incremented. As such, the first account will be at m/44'/60'/0'/0, the
 // second at m/44'/60'/0'/1, etc.
-var LegacyLedgerBaseDerivationPath = DerivationPath{0x80000000 + 44, 0x80000000 + 60, 0x80000000 + 0, 0}
+// Legacy same as base
+var LegacyLedgerBaseDerivationPath = DefaultBaseDerivationPath
 
 // DerivationPath represents the computer friendly version of a hierarchical
 // deterministic wallet account derivaion path.
