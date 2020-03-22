@@ -32,8 +32,10 @@ var (
 	RinkebyGenesisHash   = common.HexToHash("0x6341fd3daf94b748c72ced5a5b26028f2474f5f00d824504e4fa37a75767e177")
 	GoerliGenesisHash    = common.HexToHash("0xbf7e331f7f7c1dd2e05159666b3bf8bc7a8a3a9eb1d518969eab529dd9b88c1a")
 	YoloV1GenesisHash    = common.HexToHash("0xc3fd235071f24f93865b0850bd2a2119b30f7224d18a0e34c7bbf549ad7e3d36")
-	ValorbitGenesisHash  = common.HexToHash("0xe9884b54854853cec49611bba74ff91fef3fec42356c2501bf3046e6ee411a27")
-	GranvilleGenesisHash = common.HexToHash("0x1966030e1e03b1106c081146400ec947950ab8d867a79c0ff27a31e661dd9282")
+	RinkebyGenesisHash   = common.HexToHash("0x6341fd3daf94b748c72ced5a5b26028f2474f5f00d824504e4fa37a75767e177")
+	GoerliGenesisHash    = common.HexToHash("0xbf7e331f7f7c1dd2e05159666b3bf8bc7a8a3a9eb1d518969eab529dd9b88c1a")
+	ValorbitGenesisHash  = common.HexToHash("0xc5d09350b55cbe5e76f8c167f8a922a70d64c2350110634c05ee6df2ddd8b501")
+	GranvilleGenesisHash = common.HexToHash("0xc6b3ace065cee74752d30ff8a67a7627e1eab319bdf8b8d8895cf47fca0c4099")
 )
 
 // TrustedCheckpoints associates each known checkpoint with the genesis hash of
