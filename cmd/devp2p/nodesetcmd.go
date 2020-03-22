@@ -165,6 +165,10 @@ func ethFilter(args []string) (nodeFilter, error) {
 		filter = forkid.NewStaticFilter(params.GoerliChainConfig, params.GoerliGenesisHash)
 	case "ropsten":
 		filter = forkid.NewStaticFilter(params.TestnetChainConfig, params.TestnetGenesisHash)
+	case "valorbit":
+		filter = forkid.NewStaticFilter(params.ValorbitChainConfig, params.ValorbitGenesisHash)
+	case "granville":
+		filter = forkid.NewStaticFilter(params.GranvilleChainConfig, params.GranvilleGenesisHash)
 	default:
 		return nil, fmt.Errorf("unknown network %q", args[0])
 	}

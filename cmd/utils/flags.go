@@ -162,7 +162,7 @@ var (
 	}
 	NetworkIdFlag = cli.Uint64Flag{
 		Name:  "networkid",
-		Usage: "Network identifier (integer, 1=Frontier, 2=Morden (disused), 3=Ropsten, 4=Rinkeby)",
+		Usage: "Network identifier (integer, 1=Frontier, 2=Morden (disused), 3=Ropsten, 4=Rinkeby, 38=Valorbit, 138=Granville)",
 		Value: eth.DefaultConfig.NetworkId,
 	}
 	TestnetFlag = cli.BoolFlag{
@@ -180,6 +180,10 @@ var (
 	ValorbitFlag = cli.BoolFlag{
 		Name:  "valorbit",
 		Usage: "Valorbit network: pre-configured Valorbit mainnet",
+	}
+	GranvilleFlag = cli.BoolFlag{
+		Name:  "granville",
+		Usage: "Valorbit test network: pre-configured Valorbit testnet",
 	}
 	DeveloperFlag = cli.BoolFlag{
 		Name:  "dev",
@@ -776,6 +780,9 @@ func MakeDataDir(ctx *cli.Context) string {
 		if ctx.GlobalBool(ValorbitFlag.Name) {
 			return filepath.Join(path, "valorbit")
 		}
+		if ctx.GlobalBool(GranvilleFlag.Name) {
+			return filepath.Join(path, "granville")
+		}
 		return path
 	}
 	Fatalf("Cannot determine default data directory, please set manually (--datadir)")
@@ -834,6 +841,8 @@ func setBootstrapNodes(ctx *cli.Context, cfg *p2p.Config) {
 		urls = params.GoerliBootnodes
 	case ctx.GlobalBool(ValorbitFlag.Name):
 		urls = params.ValorbitBootnodes
+	case ctx.GlobalBool(GranvilleFlag.Name):
+		urls = params.GranvilleBootnodes
 	case cfg.BootstrapNodes != nil:
 		return // already set, don't apply defaults.
 	}
@@ -868,6 +877,8 @@ func setBootstrapNodesV5(ctx *cli.Context, cfg *p2p.Config) {
 		urls = params.GoerliBootnodes
 	case ctx.GlobalBool(ValorbitFlag.Name):
 		urls = params.ValorbitBootnodes
+	case ctx.GlobalBool(GranvilleFlag.Name):
+		urls = params.GranvilleBootnodes
 	case cfg.BootstrapNodesV5 != nil:
 		return // already set, don't apply defaults.
 	}
@@ -1242,6 +1253,8 @@ func setDataDir(ctx *cli.Context, cfg *node.Config) {
 		cfg.DataDir = filepath.Join(node.DefaultDataDir(), "goerli")
 	case ctx.GlobalBool(ValorbitFlag.Name) && cfg.DataDir == node.DefaultDataDir():
 		cfg.DataDir = filepath.Join(node.DefaultDataDir(), "valorbit")
+	case ctx.GlobalBool(GranvilleFlag.Name) && cfg.DataDir == node.DefaultDataDir():
+		cfg.DataDir = filepath.Join(node.DefaultDataDir(), "granville")
 	}
 }
 
@@ -1431,7 +1444,7 @@ func SetShhConfig(ctx *cli.Context, stack *node.Node, cfg *whisper.Config) {
 // SetEthConfig applies eth-related command line flags to the config.
 func SetEthConfig(ctx *cli.Context, stack *node.Node, cfg *eth.Config) {
 	// Avoid conflicting network flags
-	CheckExclusive(ctx, DeveloperFlag, TestnetFlag, RinkebyFlag, GoerliFlag)
+	CheckExclusive(ctx, DeveloperFlag, TestnetFlag, RinkebyFlag, GoerliFlag, ValorbitFlag, GranvilleFlag)
 	CheckExclusive(ctx, LightLegacyServFlag, LightServeFlag, SyncModeFlag, "light")
 	CheckExclusive(ctx, DeveloperFlag, ExternalSignerFlag) // Can't use both ephemeral unlocked and external signer
 
@@ -1525,10 +1538,16 @@ func SetEthConfig(ctx *cli.Context, stack *node.Node, cfg *eth.Config) {
 		setDNSDiscoveryDefaults(cfg, params.KnownDNSNetworks[params.GoerliGenesisHash])
 	case ctx.GlobalBool(ValorbitFlag.Name):
 		if !ctx.GlobalIsSet(NetworkIdFlag.Name) {
-			cfg.NetworkId = 22
+			cfg.NetworkId = 38
 		}
 		cfg.Genesis = core.DefaultValorbitGenesisBlock()
 		setDNSDiscoveryDefaults(cfg, params.KnownDNSNetworks[params.ValorbitGenesisHash])
+	case ctx.GlobalBool(GranvilleFlag.Name):
+		if !ctx.GlobalIsSet(NetworkIdFlag.Name) {
+			cfg.NetworkId = 138
+		}
+		cfg.Genesis = core.DefaultGranvilleGenesisBlock()
+		setDNSDiscoveryDefaults(cfg, params.KnownDNSNetworks[params.GranvilleGenesisHash])
 	case ctx.GlobalBool(DeveloperFlag.Name):
 		if !ctx.GlobalIsSet(NetworkIdFlag.Name) {
 			cfg.NetworkId = 1337
@@ -1704,6 +1723,10 @@ func MakeGenesis(ctx *cli.Context) *core.Genesis {
 		genesis = core.DefaultRinkebyGenesisBlock()
 	case ctx.GlobalBool(GoerliFlag.Name):
 		genesis = core.DefaultGoerliGenesisBlock()
+	case ctx.GlobalBool(ValorbitFlag.Name):
+		genesis = core.DefaultValorbitGenesisBlock()
+	case ctx.GlobalBool(GranvilleFlag.Name):
+		genesis = core.DefaultGranvilleGenesisBlock()
 	case ctx.GlobalBool(DeveloperFlag.Name):
 		Fatalf("Developer chains are ephemeral")
 	}
