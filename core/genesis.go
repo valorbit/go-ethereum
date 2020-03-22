@@ -236,6 +236,8 @@ func (g *Genesis) configOrDefault(ghash common.Hash) *params.ChainConfig {
 		return g.Config
 	case ghash == params.ValorbitGenesisHash:
 		return params.ValorbitChainConfig
+	case ghash == params.GranvilleGenesisHash:
+		return params.GranvilleChainConfig
 	case ghash == params.MainnetGenesisHash:
 		return params.MainnetChainConfig
 	case ghash == params.RopstenGenesisHash:
@@ -347,31 +349,35 @@ func DefaultValorbitGenesisBlock() *Genesis {
 	}
 }
 
-// DefaultGenesisBlock returns the Valorbit main net genesis block.
-func DefaultGenesisBlock() *Genesis {
+// DefaultGranvilleGenesisBlock returns the Valorbit main net genesis block.
+func DefaultGranvilleGenesisBlock() *Genesis {
 	return &Genesis{
-		Config:     params.ValorbitChainConfig,
-		Timestamp:  1577055000,
-		Coinbase:   common.HexToAddress("d60af9a4db7f0ea92a4faf45b3d4597fca20bf88"),
-		Nonce:      22022,
-		Mixhash:    common.HexToHash("0x769acd61efda35a1ae0f7ff4e22fc859bf617f81e76ec5cf27bc01f710671db9"),
-		ExtraData:  hexutil.MustDecode("0xb231143c595b19a2eccb71d355b77f18d2b1b117f45cc43dccbadfcc1905e8e30de6b5ddf2a4a907fec170e98cfe2a5325cb800f06172579bc2c10eb066bd2961c"),
-		GasLimit:   4700000,
-		Difficulty: big.NewInt(524288000),
-		Alloc:      decodePrealloc(valorbitAllocData),
+		Config:     params.GranvilleChainConfig,
+		Timestamp:  158484000,
+		Coinbase:   common.HexToAddress("0x00"),
+		Nonce:      66,
+		ExtraData:  hexutil.MustDecode("0x00"),
+		GasLimit:   16777216,
+		Difficulty: big.NewInt(1048576),
+		Alloc:      decodePrealloc(granvilleAllocData),
 	}
 }
 
-// DefaultEthGenesisBlock returns the Ethereum main net genesis block.
+// DefaultGenesisBlock returns the Ethereum main net genesis block.
 func DefaultMainnetGenesisBlock() *Genesis {
 	return &Genesis{
-		Config:     params.ValorbitChainConfig,
+		Config:     params.MainnetChainConfig,
 		Nonce:      66,
 		ExtraData:  hexutil.MustDecode("0x11bbe8db4e347b4e8c937c1c8370e4b5ed33adb3db69cbdb7a38e1e50b1b82fa"),
 		GasLimit:   5000,
 		Difficulty: big.NewInt(17179869184),
 		Alloc:      decodePrealloc(mainnetAllocData),
 	}
+}
+
+// DefaultGenesisBlock returns the Ethereum main net genesis block.
+func DefaultGenesisBlock() *Genesis {
+	return DefaultValorbitGenesisBlock()
 }
 
 // DefaultRopstenGenesisBlock returns the Ropsten network genesis block.
