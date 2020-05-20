@@ -73,13 +73,14 @@ var DiscoveryV5Bootnodes = []string{
 }
 
 const dnsPrefix = "enrtree://AKA3AM6LPBYEUDMVNU3BSVQJ5AD45Y7YPOHJLEF6W26QOE4VTUDPE@"
+const dnsPrefixVal = "enrtree://AIC2FYLEXH3QNI6735AHMYEFSREA3IVUJPZHVLTXJP5ZOC7BCN7NG@"
 
 // These DNS names provide bootstrap connectivity for public testnets and the mainnet.
 // See https://github.com/ethereum/discv4-dns-lists for more information.
 var KnownDNSNetworks = map[common.Hash]string{
 	MainnetGenesisHash:   dnsPrefix + "all.mainnet.ethdisco.net",
-	ValorbitGenesisHash:  dnsPrefix + "all.mainnet.valorbit.com",
-	GranvilleGenesisHash: dnsPrefix + "all.granville.valorbit.com",
+	ValorbitGenesisHash:  dnsPrefixVal + "all.mainnet.valorbit.com",
+	GranvilleGenesisHash: dnsPrefixVal + "all.granville.valorbit.com",
 	TestnetGenesisHash:   dnsPrefix + "all.ropsten.ethdisco.net",
 	RinkebyGenesisHash:   dnsPrefix + "all.rinkeby.ethdisco.net",
 	GoerliGenesisHash:    dnsPrefix + "all.goerli.ethdisco.net",
@@ -89,7 +90,7 @@ var ValorbitBootnodes = []string{
 	// Valorbit network Go Bootnodes
 	"enode://491bc83e4c152ffad651b85afae0ab2cbcbf25ad35d8a7c96ca030f3677ec0462e36623045403b864c936f32fd461df4149e009a3bcd63bac15890cdc3784ce7@35.236.111.241:30303", // us-west
 	"enode://7b18696a27cbae211c08f511a75815e4deefb31d39b09f65bbcec2f7777f7db62d792bc086fb3d425c83372a7df64b8f218c1e15a3cbe26e431b330df1b2bdb1@51.195.128.162:30303", // europe
-	"enode://249ab9ef4098f4fd8aa32fb89a1fdc7b1b1342e08ac28b39e57b23ca354b42ff692e6ca78bd4654a1642f52ef83efd1b3563e1465ff330dea50519e3155e6e52@157.230.77.120:30303", // europe-do-fr
+	"enode://681b4529c391969c446c4e4705ec805a1d27a64512dfcb23c96fed3fe6fb0c3478aecf21388fac8145c1633f5661a9a875f75728162c6d56414d1f7245d85cf4@157.230.77.120:30303", // europe-do-fr
 	// "enode://e07631af8a831dfc54046783b08d57cf47dc35153cfa2f8a583146819decd568a54c39d557bbf338e2b6e95cdd2f6475bd60be2260042d4953121170d51d45a4@34.93.76.187:30303",   // asia-south
 }
 
