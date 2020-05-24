@@ -26,14 +26,14 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/consensus/ethash"
-	"github.com/ethereum/go-ethereum/console/prompt"
-	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/go-ethereum/eth"
-	"github.com/ethereum/go-ethereum/internal/jsre"
-	"github.com/ethereum/go-ethereum/miner"
-	"github.com/ethereum/go-ethereum/node"
+	"github.com/valorbit/go-ethereum/common"
+	"github.com/valorbit/go-ethereum/consensus/ethash"
+	"github.com/valorbit/go-ethereum/console/prompt"
+	"github.com/valorbit/go-ethereum/core"
+	"github.com/valorbit/go-ethereum/eth"
+	"github.com/valorbit/go-ethereum/internal/jsre"
+	"github.com/valorbit/go-ethereum/miner"
+	"github.com/valorbit/go-ethereum/node"
 )
 
 const (

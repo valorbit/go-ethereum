@@ -19,7 +19,7 @@
 package metrics
 
 import (
-	"github.com/ethereum/go-ethereum/log"
+	"github.com/valorbit/go-ethereum/log"
 	"github.com/shirou/gopsutil/cpu"
 )
 

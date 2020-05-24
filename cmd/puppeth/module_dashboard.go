@@ -26,7 +26,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ethereum/go-ethereum/log"
+	"github.com/valorbit/go-ethereum/log"
 )
 
 // dashboardContent is the actual dashboard HTML content to serve up when users
@@ -211,7 +211,7 @@ var dashboardContent = `
 											<pre>ethereumwallet --rpc $HOME/.{{.Network}}/geth.ipc --node-networkid={{.NetworkID}} --node-datadir=$HOME/.{{.Network}}{{if .Ethstats}} --node-ethstats='{{.Ethstats}}'{{end}} --node-bootnodes={{.BootnodesFlat}}</pre>
 										<p>
 										<br/>
-										<p>You can download the Ethereum Wallet from <a href="https://github.com/ethereum/mist/releases" target="about:blank">https://github.com/ethereum/mist/releases</a>.</p>
+										<p>You can download the Ethereum Wallet from <a href="https://github.com/valorbit/mist/releases" target="about:blank">https://github.com/valorbit/mist/releases</a>.</p>
 									</div>
 								</div>
 							</div>
@@ -232,7 +232,7 @@ var dashboardContent = `
 											<pre>mist --rpc $HOME/.{{.Network}}/geth.ipc --node-networkid={{.NetworkID}} --node-datadir=$HOME/.{{.Network}}{{if .Ethstats}} --node-ethstats='{{.Ethstats}}'{{end}} --node-bootnodes={{.BootnodesFlat}}</pre>
 										<p>
 										<br/>
-										<p>You can download the Mist browser from <a href="https://github.com/ethereum/mist/releases" target="about:blank">https://github.com/ethereum/mist/releases</a>.</p>
+										<p>You can download the Mist browser from <a href="https://github.com/valorbit/mist/releases" target="about:blank">https://github.com/valorbit/mist/releases</a>.</p>
 									</div>
 								</div>
 							</div>
@@ -337,7 +337,7 @@ try! node?.start();
 											<pre>eth --config {{.CppGenesis}} --datadir $HOME/.{{.Network}} --peerset "{{.CppBootnodes}}"</pre>
 										</p>
 										<br/>
-										<p>You can find cpp-ethereum at <a href="https://github.com/ethereum/cpp-ethereum/" target="about:blank">https://github.com/ethereum/cpp-ethereum/</a>.</p>
+										<p>You can find cpp-ethereum at <a href="https://github.com/valorbit/cpp-ethereum/" target="about:blank">https://github.com/valorbit/cpp-ethereum/</a>.</p>
 									</div>
 								</div>
 							</div>
@@ -401,7 +401,7 @@ try! node?.start();
 											<pre>pyethapp -c eth.genesis="$(cat {{.PythonGenesis}})" -c eth.network_id={{.NetworkID}} -c data_dir=$HOME/.config/pyethapp/{{.Network}} -c discovery.bootstrap_nodes="[{{.PythonBootnodes}}]" -c eth.block.HOMESTEAD_FORK_BLKNUM={{.Homestead}} -c eth.block.ANTI_DOS_FORK_BLKNUM={{.Tangerine}} -c eth.block.SPURIOUS_DRAGON_FORK_BLKNUM={{.Spurious}} -c eth.block.METROPOLIS_FORK_BLKNUM={{.Byzantium}} -c eth.block.DAO_FORK_BLKNUM=18446744073709551615 run --console</pre>
 										</p>
 										<br/>
-										<p>You can find pyethapp at <a href="https://github.com/ethereum/pyethapp/" target="about:blank">https://github.com/ethereum/pyethapp/</a>.</p>
+										<p>You can find pyethapp at <a href="https://github.com/valorbit/pyethapp/" target="about:blank">https://github.com/valorbit/pyethapp/</a>.</p>
 									</div>
 								</div>
 							</div>
@@ -419,7 +419,7 @@ try! node?.start();
 										<p>Puppeth is a tool to aid you in creating a new Ethereum network down to the genesis block, bootnodes, signers, ethstats server, crypto faucet, wallet browsers, block explorer, dashboard and more; without the hassle that it would normally entail to manually configure all these services one by one.</p>
 										<p>Puppeth uses ssh to dial in to remote servers, and builds its network components out of docker containers using docker-compose. The user is guided through the process via a command line wizard that does the heavy lifting and topology configuration automatically behind the scenes.</p>
 										<br/>
-										<p>Puppeth is distributed as part of the <a href="https://geth.ethereum.org/downloads/" target="about:blank">Geth &amp; Tools</a> bundles, but can also be installed separately via:<pre>go get github.com/ethereum/go-ethereum/cmd/puppeth</pre></p>
+										<p>Puppeth is distributed as part of the <a href="https://geth.ethereum.org/downloads/" target="about:blank">Geth &amp; Tools</a> bundles, but can also be installed separately via:<pre>go get github.com/valorbit/go-ethereum/cmd/puppeth</pre></p>
 										<br/>
 										<p><em>Copyright 2017. The go-ethereum Authors.</em></p>
 									</div>

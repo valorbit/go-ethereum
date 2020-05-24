@@ -25,16 +25,16 @@ import (
 	"os"
 	"reflect"
 
-	"github.com/ethereum/go-ethereum/accounts"
-	"github.com/ethereum/go-ethereum/accounts/keystore"
-	"github.com/ethereum/go-ethereum/accounts/scwallet"
-	"github.com/ethereum/go-ethereum/accounts/usbwallet"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/internal/ethapi"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/ethereum/go-ethereum/signer/storage"
+	"github.com/valorbit/go-ethereum/accounts"
+	"github.com/valorbit/go-ethereum/accounts/keystore"
+	"github.com/valorbit/go-ethereum/accounts/scwallet"
+	"github.com/valorbit/go-ethereum/accounts/usbwallet"
+	"github.com/valorbit/go-ethereum/common"
+	"github.com/valorbit/go-ethereum/common/hexutil"
+	"github.com/valorbit/go-ethereum/internal/ethapi"
+	"github.com/valorbit/go-ethereum/log"
+	"github.com/valorbit/go-ethereum/rlp"
+	"github.com/valorbit/go-ethereum/signer/storage"
 )
 
 const (
