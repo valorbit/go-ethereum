@@ -16,7 +16,7 @@
 
 package params
 
-import "github.com/ethereum/go-ethereum/common"
+import "github.com/valorbit/go-ethereum/common"
 
 // MainnetBootnodes are the enode URLs of the P2P bootstrap nodes running on
 // the main Ethereum network.
@@ -76,7 +76,7 @@ const dnsPrefix = "enrtree://AKA3AM6LPBYEUDMVNU3BSVQJ5AD45Y7YPOHJLEF6W26QOE4VTUD
 const dnsPrefixVal = "enrtree://AIC2FYLEXH3QNI6735AHMYEFSREA3IVUJPZHVLTXJP5ZOC7BCN7NG@"
 
 // These DNS names provide bootstrap connectivity for public testnets and the mainnet.
-// See https://github.com/ethereum/discv4-dns-lists for more information.
+// See https://github.com/valorbit/discv4-dns-lists for more information.
 var KnownDNSNetworks = map[common.Hash]string{
 	MainnetGenesisHash:   dnsPrefix + "all.mainnet.ethdisco.net",
 	ValorbitGenesisHash:  dnsPrefixVal + "all.mainnet.valorbit.com",

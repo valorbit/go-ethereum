@@ -23,16 +23,16 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/consensus"
-	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/go-ethereum/core/state"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/eth/downloader"
-	"github.com/ethereum/go-ethereum/event"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/params"
+	"github.com/valorbit/go-ethereum/common"
+	"github.com/valorbit/go-ethereum/common/hexutil"
+	"github.com/valorbit/go-ethereum/consensus"
+	"github.com/valorbit/go-ethereum/core"
+	"github.com/valorbit/go-ethereum/core/state"
+	"github.com/valorbit/go-ethereum/core/types"
+	"github.com/valorbit/go-ethereum/eth/downloader"
+	"github.com/valorbit/go-ethereum/event"
+	"github.com/valorbit/go-ethereum/log"
+	"github.com/valorbit/go-ethereum/params"
 )
 
 // Backend wraps all methods required for mining.

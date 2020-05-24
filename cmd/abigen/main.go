@@ -25,12 +25,12 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/ethereum/go-ethereum/accounts/abi"
-	"github.com/ethereum/go-ethereum/accounts/abi/bind"
-	"github.com/ethereum/go-ethereum/cmd/utils"
-	"github.com/ethereum/go-ethereum/common/compiler"
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/log"
+	"github.com/valorbit/go-ethereum/accounts/abi"
+	"github.com/valorbit/go-ethereum/accounts/abi/bind"
+	"github.com/valorbit/go-ethereum/cmd/utils"
+	"github.com/valorbit/go-ethereum/common/compiler"
+	"github.com/valorbit/go-ethereum/crypto"
+	"github.com/valorbit/go-ethereum/log"
 	"gopkg.in/urfave/cli.v1"
 )
 

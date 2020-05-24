@@ -19,7 +19,7 @@ package rpc
 import (
 	"net"
 
-	"github.com/ethereum/go-ethereum/log"
+	"github.com/valorbit/go-ethereum/log"
 )
 
 // checkModuleAvailability check that all names given in modules are actually

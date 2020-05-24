@@ -26,10 +26,10 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/params"
+	"github.com/valorbit/go-ethereum/common"
+	"github.com/valorbit/go-ethereum/core"
+	"github.com/valorbit/go-ethereum/log"
+	"github.com/valorbit/go-ethereum/params"
 )
 
 var (

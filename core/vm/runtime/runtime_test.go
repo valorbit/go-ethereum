@@ -21,15 +21,15 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ethereum/go-ethereum/accounts/abi"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/consensus"
-	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/go-ethereum/core/rawdb"
-	"github.com/ethereum/go-ethereum/core/state"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/core/vm"
-	"github.com/ethereum/go-ethereum/params"
+	"github.com/valorbit/go-ethereum/accounts/abi"
+	"github.com/valorbit/go-ethereum/common"
+	"github.com/valorbit/go-ethereum/consensus"
+	"github.com/valorbit/go-ethereum/core"
+	"github.com/valorbit/go-ethereum/core/rawdb"
+	"github.com/valorbit/go-ethereum/core/state"
+	"github.com/valorbit/go-ethereum/core/types"
+	"github.com/valorbit/go-ethereum/core/vm"
+	"github.com/valorbit/go-ethereum/params"
 )
 
 func TestDefaults(t *testing.T) {
