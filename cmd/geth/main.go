@@ -27,6 +27,7 @@ import (
 	"strings"
 	"time"
 
+	gopsutil "github.com/shirou/gopsutil/mem"
 	"github.com/valorbit/go-ethereum/accounts"
 	"github.com/valorbit/go-ethereum/accounts/keystore"
 	"github.com/valorbit/go-ethereum/cmd/utils"
@@ -40,7 +41,6 @@ import (
 	"github.com/valorbit/go-ethereum/log"
 	"github.com/valorbit/go-ethereum/metrics"
 	"github.com/valorbit/go-ethereum/node"
-	gopsutil "github.com/shirou/gopsutil/mem"
 	cli "gopkg.in/urfave/cli.v1"
 )
 
@@ -282,6 +282,9 @@ func prepare(ctx *cli.Context) {
 		log.Warn("The --testnet flag is ambiguous! Please specify one of --goerli, --rinkeby, or --ropsten.")
 		log.Warn("The generic --testnet flag is deprecated and will be removed in the future!")
 
+	case ctx.GlobalIsSet(utils.ValorbitFlag.Name):
+		log.Info("Starting Geth on Valorbit mainnet...")
+
 	case ctx.GlobalIsSet(utils.RopstenFlag.Name):
 		log.Info("Starting Geth on Ropsten testnet...")
 
@@ -295,7 +298,7 @@ func prepare(ctx *cli.Context) {
 		log.Info("Starting Geth in ephemeral dev mode...")
 
 	case !ctx.GlobalIsSet(utils.NetworkIdFlag.Name):
-		log.Info("Starting Geth on Ethereum mainnet...")
+		log.Info("Starting Geth on Valorbit mainnet...")
 	}
 	// If we're a full node on mainnet without --cache specified, bump default cache allowance
 	if ctx.GlobalString(utils.SyncModeFlag.Name) != "light" && !ctx.GlobalIsSet(utils.CacheFlag.Name) && !ctx.GlobalIsSet(utils.NetworkIdFlag.Name) {
