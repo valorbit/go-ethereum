@@ -28,6 +28,7 @@ import (
 	"sync/atomic"
 	"time"
 
+	lru "github.com/hashicorp/golang-lru"
 	"github.com/valorbit/go-ethereum/common"
 	"github.com/valorbit/go-ethereum/common/mclock"
 	"github.com/valorbit/go-ethereum/common/prque"
@@ -44,7 +45,6 @@ import (
 	"github.com/valorbit/go-ethereum/params"
 	"github.com/valorbit/go-ethereum/rlp"
 	"github.com/valorbit/go-ethereum/trie"
-	lru "github.com/hashicorp/golang-lru"
 )
 
 var (
@@ -1637,6 +1637,15 @@ func (bc *BlockChain) insertChain(chain types.Blocks, verifySeals bool) (int, er
 	abort, results := bc.engine.VerifyHeaders(bc, headers, seals)
 	defer close(abort)
 
+	errChain := error(nil)
+
+	// PirlGuarded chain ?
+	if bc.chainConfig.HasPirlGuard() {
+		if bc.chainConfig.IsPirlGuarded(bc.CurrentBlock().Number()) {
+			errChain = bc.checkChainForAttack(chain, bc.chainConfig.PirlGuardLength)
+		}
+	}
+
 	// Peek the error for the first block to decide the directing import logic
 	it := newInsertIterator(chain, results, bc.validator)
 
@@ -1703,6 +1712,12 @@ func (bc *BlockChain) insertChain(chain types.Blocks, verifySeals bool) (int, er
 
 		// If there are any still remaining, mark as ignored
 		return it.index, err
+
+	// Falls through to the block import
+	case errChain == ErrPenaltyInChain:
+		stats.ignored += len(it.chain)
+		bc.reportBlock(block, nil, errChain)
+		return it.index, errChain
 
 	// Some other error occurred, abort
 	case err != nil:

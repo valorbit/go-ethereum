@@ -63,4 +63,8 @@ var (
 	// ErrIntrinsicGas is returned if the transaction is specified to use less gas
 	// than required to start the invocation.
 	ErrIntrinsicGas = errors.New("intrinsic gas too low")
+
+	// ErrPenaltyInChain is returned if the provided chain is not legit and has a penalty value.
+	// In that case the chain must be discarded and peer dropped.
+	ErrPenaltyInChain = errors.New("penalty in chain")
 )
