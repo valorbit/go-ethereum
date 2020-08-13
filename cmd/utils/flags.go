@@ -32,6 +32,7 @@ import (
 	"text/template"
 	"time"
 
+	pcsclite "github.com/gballet/go-libpcsclite"
 	"github.com/valorbit/go-ethereum/accounts"
 	"github.com/valorbit/go-ethereum/accounts/keystore"
 	"github.com/valorbit/go-ethereum/common"
@@ -62,7 +63,6 @@ import (
 	"github.com/valorbit/go-ethereum/params"
 	"github.com/valorbit/go-ethereum/rpc"
 	whisper "github.com/valorbit/go-ethereum/whisper/whisperv6"
-	pcsclite "github.com/gballet/go-libpcsclite"
 	cli "gopkg.in/urfave/cli.v1"
 )
 
@@ -759,9 +759,6 @@ func MakeDataDir(ctx *cli.Context) string {
 		if ctx.GlobalBool(YoloV1Flag.Name) {
 			return filepath.Join(path, "yolo-v1")
 		}
-		if ctx.GlobalBool(ValorbitFlag.Name) {
-			return filepath.Join(path, "valorbit")
-		}
 		if ctx.GlobalBool(GranvilleFlag.Name) {
 			return filepath.Join(path, "granville")
 		}
@@ -1299,8 +1296,6 @@ func setDataDir(ctx *cli.Context, cfg *node.Config) {
 		cfg.DataDir = filepath.Join(node.DefaultDataDir(), "goerli")
 	case ctx.GlobalBool(YoloV1Flag.Name) && cfg.DataDir == node.DefaultDataDir():
 		cfg.DataDir = filepath.Join(node.DefaultDataDir(), "yolo-v1")
-	case ctx.GlobalBool(ValorbitFlag.Name) && cfg.DataDir == node.DefaultDataDir():
-		cfg.DataDir = filepath.Join(node.DefaultDataDir(), "valorbit")
 	case ctx.GlobalBool(GranvilleFlag.Name) && cfg.DataDir == node.DefaultDataDir():
 		cfg.DataDir = filepath.Join(node.DefaultDataDir(), "granville")
 	}
